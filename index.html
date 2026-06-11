@@ -1,0 +1,1136 @@
+<!--
+---
+Kategori: [mockup, interaktiv]
+Tags: [windows-95, grafikr, retro, desktop, shopify]
+Redigeret: 2026-06-11T19:30
+---
+-->
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grafikr A/S – Desktop95</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:#008080;font-family:Tahoma,"Segoe UI",Verdana,sans-serif}
+#desk{width:100vw;height:100vh;background:#008080;position:relative;overflow:hidden;font-size:11px;user-select:none;cursor:default}
+
+.w{position:absolute;display:flex;flex-direction:column;background:#c0c0c0;border-top:2px solid #fff;border-left:2px solid #fff;border-right:2px solid #404040;border-bottom:2px solid #404040;box-shadow:1px 1px 0 #000}
+.w.hid{display:none!important}
+.tbar{height:22px;display:flex;align-items:center;gap:2px;padding:2px 3px;cursor:grab;flex-shrink:0}
+.tbar.a{background:linear-gradient(90deg,#00007b,#1084d0)}
+.tbar.i{background:linear-gradient(90deg,#7f787d,#afacad)}
+.tbar .ico{width:14px;height:14px;flex-shrink:0}
+.tbar .tt{flex:1;font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:2px}
+.tbar.a .tt{color:#fff}.tbar.i .tt{color:#d4d4d4}
+.wbtn{width:16px;height:14px;background:#c0c0c0;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #404040;border-bottom:1px solid #404040;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:8px;font-weight:700;font-family:"Courier New",monospace;color:#000}
+.wbtn:active{border-top-color:#404040;border-left-color:#404040;border-right-color:#fff;border-bottom-color:#fff}
+.mbar{height:20px;background:#c0c0c0;display:flex;align-items:center;padding:0 2px;flex-shrink:0}
+.mbar span{padding:1px 6px;font-size:11px;cursor:default}
+.mbar span:hover{background:#00007b;color:#fff}
+.wbody{flex:1;overflow:auto;border-top:1.5px solid #808080;border-left:1.5px solid #808080;border-right:1.5px solid #fff;border-bottom:1.5px solid #fff;margin:2px;background:#fff}
+.sbar{height:18px;border-top:1px solid #808080;display:flex;align-items:center;padding:0 4px;flex-shrink:0;gap:4px}
+.sbar span{border-top:1px solid #808080;border-left:1px solid #808080;border-right:1px solid #fff;border-bottom:1px solid #fff;padding:0 4px;font-size:10px;height:14px;display:flex;align-items:center}
+
+.np{padding:4px 6px;font-family:"Lucida Console","Courier New",monospace;font-size:12px;line-height:1.55;white-space:pre-wrap;color:#000}
+
+/* Explorer */
+.exp{display:flex;height:100%}
+.exp-tree{width:140px;border-right:1.5px solid #808080;padding:4px;background:#fff;font-size:11px;flex-shrink:0;overflow-y:auto}
+.tr-item{padding:2px 4px 2px 0;cursor:default;display:flex;align-items:center;gap:3px;white-space:nowrap}
+.tr-item svg{width:16px;height:16px;flex-shrink:0}
+.tr-item:hover{background:#e8e8ff}
+.tr-item.sel{background:#00007b;color:#fff}
+.tr-sub{padding-left:16px}
+.exp-list{flex:1;overflow-y:auto;font-size:11px}
+.exp-hdr{display:grid;grid-template-columns:1fr 90px 80px 80px;padding:2px 6px;background:#c0c0c0;border-bottom:1.5px solid #808080;font-weight:700;position:sticky;top:0}
+.exp-row{display:grid;grid-template-columns:1fr 90px 80px 80px;padding:2px 6px;cursor:default;border-bottom:1px solid #f0f0f0}
+.exp-row:hover{background:#00007b;color:#fff}
+.exp-row.sel{background:#00007b;color:#fff}
+.exp-row svg{width:16px;height:16px;flex-shrink:0;vertical-align:middle;margin-right:4px}
+
+/* Awards */
+.aw-hdr{display:grid;grid-template-columns:50px 1fr 1fr 90px;padding:2px 6px;background:#c0c0c0;border-bottom:1.5px solid #808080;font-weight:700;position:sticky;top:0}
+.aw-row{display:grid;grid-template-columns:50px 1fr 1fr 90px;padding:2px 6px;cursor:default;border-bottom:1px solid #f0f0f0;font-size:11px}
+.aw-row:hover{background:#00007b;color:#fff}
+
+/* Tabs */
+.tabs{display:flex;gap:0;padding:6px 6px 0;flex-shrink:0}
+.tab{padding:3px 10px;font-size:11px;cursor:pointer;border:1px solid #808080;border-bottom:none;background:#c0c0c0;position:relative}
+.tab.act{background:#c0c0c0;border-bottom:1px solid #c0c0c0;z-index:1;margin-bottom:-1px}
+.tab:not(.act){background:#a0a0a0;top:1px}
+.tpanel{border:1px solid #808080;margin:0 6px 6px;padding:10px;flex:1;overflow-y:auto;font-size:11px;line-height:1.5}
+.tpanel.hid{display:none}
+.grp{border:1px solid #808080;padding:10px;margin-bottom:8px;position:relative}
+.grp-t{position:absolute;top:-7px;left:8px;background:#c0c0c0;padding:0 4px;font-size:11px}
+.sk-row{display:flex;align-items:center;gap:6px;padding:2px 0}
+.sk-row .lbl{width:110px;text-align:right;font-size:11px}
+.sk-row .bar{flex:1;height:14px;background:#fff;border-top:1px solid #808080;border-left:1px solid #808080;border-right:1px solid #fff;border-bottom:1px solid #fff}
+.sk-row .fill{height:100%;background:#00007b;display:block}
+.sk-row .pct{width:32px;font-size:10px;text-align:right}
+.d-btn{padding:3px 16px;background:#c0c0c0;border-top:1.5px solid #fff;border-left:1.5px solid #fff;border-right:1.5px solid #404040;border-bottom:1.5px solid #404040;font-size:11px;cursor:pointer;font-family:inherit}
+.d-btn:active{border-top-color:#404040;border-left-color:#404040;border-right-color:#fff;border-bottom-color:#fff}
+
+/* Desktop icons */
+.dicons{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:6px;z-index:1}
+.di{display:flex;flex-direction:column;align-items:center;gap:2px;width:66px;padding:4px 2px;cursor:default;border:1px dotted transparent}
+.di:hover{border-color:rgba(255,255,255,.4)}
+.di.sel{background:rgba(0,0,128,.35);border-color:rgba(255,255,255,.3)}
+.di svg{width:32px;height:32px}
+.di span{color:#fff;text-align:center;font-size:11px;text-shadow:1px 1px 1px #000;line-height:1.2}
+
+/* Taskbar */
+.tkbar{position:absolute;bottom:0;left:0;right:0;height:32px;background:#c0c0c0;border-top:2px solid #fff;display:flex;align-items:center;padding:2px 3px;gap:2px;z-index:9998}
+.stbtn{height:24px;padding:0 5px;border-top:2px solid #fff;border-left:2px solid #fff;border-right:2px solid #404040;border-bottom:2px solid #404040;background:#c0c0c0;display:flex;align-items:center;gap:3px;cursor:pointer;font-weight:700;font-size:11px;flex-shrink:0;font-family:inherit}
+.stbtn:active,.stbtn.pr{border-top-color:#404040;border-left-color:#404040;border-right-color:#fff;border-bottom-color:#fff}
+.tk-sep{width:0;height:22px;border-left:1px solid #808080;border-right:1px solid #fff;margin:0 2px;flex-shrink:0}
+.tk-items{flex:1;display:flex;gap:2px;overflow:hidden}
+.tki{height:22px;padding:0 6px;border-top:2px solid #fff;border-left:2px solid #fff;border-right:2px solid #404040;border-bottom:2px solid #404040;background:#c0c0c0;display:flex;align-items:center;gap:3px;cursor:pointer;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+.tki.act{border-top-color:#404040;border-left-color:#404040;border-right-color:#fff;border-bottom-color:#fff;background:#b0b0b0}
+.tk-clock{height:22px;border-top:1px solid #808080;border-left:1px solid #808080;border-right:1px solid #fff;border-bottom:1px solid #fff;padding:0 8px;display:flex;align-items:center;gap:6px;font-size:11px;flex-shrink:0}
+
+/* Start menu */
+.smenu{position:absolute;bottom:32px;left:3px;width:220px;background:#c0c0c0;border-top:2px solid #fff;border-left:2px solid #fff;border-right:2px solid #404040;border-bottom:2px solid #404040;z-index:9999;display:none}
+.smenu.open{display:flex}
+.sm-side{width:24px;background:linear-gradient(to top,#00007b,#000);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;flex-shrink:0}
+.sm-side span{color:#c0c0c0;font-weight:700;font-size:18px;writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:3px}
+.sm-list{flex:1;padding:2px 0}
+.smi{height:30px;padding:0 16px 0 6px;display:flex;align-items:center;gap:8px;cursor:default;font-size:11px}
+.smi:hover{background:#00007b;color:#fff}
+.smi svg{width:24px;height:24px;flex-shrink:0}
+.sm-sep{height:0;margin:3px 4px;border-top:1px solid #808080;border-bottom:1px solid #fff}
+
+#sd{position:absolute;inset:0;z-index:20000;background:#00007b;display:none;flex-direction:column;align-items:center;justify-content:center;cursor:default}
+#sd.on{display:flex}
+#sd p{color:#fff;font-size:24px;text-align:center;line-height:1.5;font-family:"Times New Roman",serif}
+#sd .sub{font-size:13px;color:#c0c0c0;margin-top:20px;font-family:Tahoma,sans-serif}
+
+.cur{display:inline-block;width:1px;height:13px;background:#000;animation:bk 1s step-end infinite;vertical-align:text-bottom}
+@keyframes bk{0%,100%{opacity:1}50%{opacity:0}}
+
+/* IE */
+.abar{height:24px;display:flex;align-items:center;gap:4px;padding:2px 4px;flex-shrink:0}
+.abar span{font-size:11px;font-weight:700;flex-shrink:0}
+.abar .url{flex:1;height:18px;border-top:1px solid #808080;border-left:1px solid #808080;border-right:1px solid #fff;border-bottom:1px solid #fff;background:#fff;padding:0 4px;display:flex;align-items:center;font-size:11px;color:#000}
+.ie-page{padding:16px;font-size:12px;line-height:1.6}
+.ie-page h1{font-size:18px;margin-bottom:8px;color:#00007b}
+.ie-page h2{font-size:13px;margin:12px 0 4px;color:#808080;text-transform:uppercase;letter-spacing:1px}
+.ie-page a{color:#00007b}
+.ie-page .field{display:flex;gap:8px;padding:3px 0}
+.ie-page .field .k{color:#808080;width:90px;flex-shrink:0;text-align:right}
+.ie-page .field .v{color:#000;font-weight:700}
+
+/* Grafikr hero */
+.ie-hero{background:#000;color:#fff;padding:20px;text-align:center}
+.ie-hero h1{color:#fff;font-size:15px;text-transform:uppercase;letter-spacing:3px;margin-bottom:8px;font-weight:700}
+.ie-hero .sub{font-size:11px;color:#ababab;margin-bottom:6px}
+.ie-hero .badge{display:inline-block;border:1px solid #ababab;padding:3px 10px;font-size:10px;color:#ababab;letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+.ie-nav{display:flex;justify-content:center;gap:16px;padding:6px 0;background:#1c1c1c;font-size:10px;margin:-20px -20px 16px;padding:8px}
+.ie-nav a{color:#ababab;text-decoration:none;cursor:pointer;letter-spacing:.5px}
+.ie-nav a:hover{color:#fff}
+.ie-section{padding:10px 0;border-bottom:1px solid #e0e0e0}
+.ie-section:last-child{border-bottom:none}
+.ie-section h3{font-size:12px;color:#00007b;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px}
+.ie-section p{font-size:11px;color:#333;line-height:1.5}
+
+/* Case detail in IE */
+.case-meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;font-size:11px;margin:8px 0 12px;padding:8px;background:#f5f5f5;border:1px solid #ddd}
+.case-meta .cm-k{color:#808080}
+.case-meta .cm-v{font-weight:700}
+.case-section{margin:10px 0;font-size:11px;line-height:1.55}
+.case-section h3{font-size:12px;color:#00007b;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid #ddd;padding-bottom:3px}
+.case-section p{color:#333;margin-bottom:6px}
+.case-section .quote{background:#f8f8f0;border-left:3px solid #00007b;padding:6px 10px;margin:6px 0;font-style:italic;font-size:10px;color:#444}
+.case-section .quote .attr{font-style:normal;font-weight:700;display:block;margin-top:3px;font-size:9px;color:#666}
+.case-stats{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0}
+.case-stat{background:#00007b;color:#fff;padding:4px 10px;font-size:11px;text-align:center}
+.case-stat .num{font-weight:700;font-size:14px}
+.case-stat .lbl{font-size:8px;text-transform:uppercase;letter-spacing:.5px;opacity:.8}
+
+/* Case cards */
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.case-card{background:#f5f5f5;border:1px solid #ddd;padding:8px;font-size:10px;cursor:pointer}
+.case-card:hover{background:#e0e0ff;border-color:#00007b}
+.case-card .cn{font-weight:700;font-size:11px;margin-bottom:2px}
+.case-card .cd{color:#666}
+
+/* Stats row */
+.stats{display:flex;justify-content:center;gap:20px;padding:8px 0;border-bottom:1px solid #e0e0e0}
+.stat{text-align:center}
+.stat .num{font-size:14px;font-weight:700;color:#00007b}
+.stat .lbl{font-size:9px;color:#808080;text-transform:uppercase;letter-spacing:.5px}
+
+/* Context menu */
+.ctx{position:absolute;background:#c0c0c0;border-top:2px solid #fff;border-left:2px solid #fff;border-right:2px solid #404040;border-bottom:2px solid #404040;box-shadow:1px 1px 0 #000;z-index:19999;display:none;min-width:160px;padding:2px 0;font-size:11px}
+.ctx.open{display:block}
+.ctx-item{padding:4px 24px;cursor:default;white-space:nowrap}
+.ctx-item:hover{background:#00007b;color:#fff}
+.ctx-sep{height:0;margin:3px 2px;border-top:1px solid #808080;border-bottom:1px solid #fff}
+
+/* Maximized windows */
+.w.maxed{left:0!important;top:0!important;width:100vw!important;height:calc(100vh - 32px)!important}
+
+/* Snake */
+.snake-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:#000;gap:8px}
+.snake-wrap canvas{border:2px solid #00007b;image-rendering:pixelated}
+.snake-hud{display:flex;gap:20px;font-size:12px;color:#0f0;font-family:"Lucida Console",monospace}
+.snake-msg{color:#0f0;font-size:12px;font-family:"Lucida Console",monospace;text-align:center}
+
+/* Trash explorer rows */
+.trash-hdr{display:grid;grid-template-columns:1fr 80px 100px 80px;padding:2px 6px;background:#c0c0c0;border-bottom:1.5px solid #808080;font-weight:700;position:sticky;top:0}
+.trash-row{display:grid;grid-template-columns:1fr 80px 100px 80px;padding:2px 6px;cursor:default;border-bottom:1px solid #f0f0f0;font-size:11px}
+.trash-row:hover{background:#00007b;color:#fff}
+.trash-row svg{width:16px;height:16px;flex-shrink:0;vertical-align:middle;margin-right:4px}
+
+/* Boot splash */
+#boot{position:absolute;inset:0;z-index:30000;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:default;user-select:none}
+#boot.out{opacity:0;transition:opacity .6s;pointer-events:none}
+.boot-logo{width:180px;height:auto;margin-bottom:12px}
+.boot-sub{color:#555;font-size:12px;font-family:Tahoma,sans-serif;letter-spacing:3px}
+.boot-bar{width:180px;height:18px;background:#111;border:2px solid;border-color:#555 #222 #222 #555;padding:2px;position:absolute;bottom:80px;left:50%;transform:translateX(-50%)}
+.boot-blocks{height:100%;display:flex;gap:1px}
+.boot-b{width:8px;height:100%;background:#c0c0c0;flex-shrink:0;display:none}
+.boot-b.on{display:block}
+
+/* Dithered wallpaper */
+#desk.wp{image-rendering:pixelated;image-rendering:-moz-crisp-edges}
+</style>
+</head>
+<body>
+<div id="desk">
+
+<!-- Boot Screen -->
+<div id="boot">
+  <svg class="boot-logo" viewBox="0 0 242.2 30.5" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#fff" d="M75,11.5C75,4.8,70.9,1,63.9,1H40.8v29h8.4v-8H60l5.2,8.1H75l-6.2-9C72.7,19.6,75,16,75,11.5z M61,15.1H49.2V7.9H61c2.6,0,5.3,0,5.3,3.6S63.5,15.1,61,15.1z"/>
+    <path fill="#fff" d="M91.9,1l-15,29H86l2.8-5.5h17.9l2.8,5.5h9L103.5,1H91.9z M92,18.3l5.7-11.4l5.7,11.4H92z"/>
+    <polygon fill="#fff" points="121,30.1 129.4,30.1 129.4,21.5 148.7,21.5 148.7,14.4 129.4,14.4 129.4,8.2 151.1,8.2 151.1,1 121,1"/>
+    <rect x="154.7" y="1" fill="#fff" width="8.4" height="29"/>
+    <polygon fill="#fff" points="194.5,1 184.3,12 175.9,12 175.9,1 167.5,1 167.5,30.1 175.9,30.1 175.9,19.1 184.3,19.1 194.5,30.1 204.8,30.1 191.7,15.6 204.8,1"/>
+    <path fill="#fff" d="M242.2,11.5C242.2,4.8,238.1,1,231,1h-23.1v29h8.4v-8h10.8l5.2,8.1h9.7l-6.2-9C239.9,19.6,242.2,16,242.2,11.5z M228.1,15.1h-11.8V7.9h11.8c2.6,0,5.3,0,5.3,3.6S230.7,15.1,228.1,15.1z"/>
+    <path fill="#fff" d="M17.6,19.6h10.5c-0.6,1.8-3.4,4.1-9.3,4.1c-6.7,0-10.2-2.8-10.2-8.2S12,7.3,18.7,7.3c5.7,0,8,1.8,9,3.4h9C35.6,3.8,29.3,0,18.7,0C6.7,0,0,5.4,0,15.2c0,9.5,6.6,15.2,17.5,15.2c5.2,0,9.5-1.4,12.5-4.1l0.3,3.7h6.6V13.6H17.6V19.6z"/>
+  </svg>
+  <div class="boot-sub">Desktop 95</div>
+  <div class="boot-bar"><div class="boot-blocks" id="bootBlocks"></div></div>
+</div>
+
+<!-- Desktop Icons -->
+<div class="dicons">
+  <div class="di" ondblclick="openWin('w1')">
+    <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" fill="#4169e1" stroke="#000" stroke-width=".7"/><ellipse cx="16" cy="16" rx="5" ry="11" fill="none" stroke="#fff" stroke-width=".6"/><line x1="5" y1="11" x2="27" y2="11" stroke="#fff" stroke-width=".5"/><line x1="5" y1="21" x2="27" y2="21" stroke="#fff" stroke-width=".5"/><line x1="16" y1="5" x2="16" y2="27" stroke="#fff" stroke-width=".5"/></svg>
+    <span>grafikr.dk</span>
+  </div>
+  <div class="di" ondblclick="openWin('w2')">
+    <svg viewBox="0 0 32 32"><path d="M4 10v16h24V10H4z" fill="#ffd700" stroke="#000" stroke-width=".7"/><path d="M4 10V7h8l2 3" fill="#e6c200" stroke="#000" stroke-width=".7"/><path d="M4 10h24" stroke="#b8960f" stroke-width=".5"/></svg>
+    <span>Kunder</span>
+  </div>
+  <div class="di" ondblclick="openWin('w3')">
+    <svg viewBox="0 0 32 32"><rect x="8" y="8" width="16" height="16" fill="#808080" stroke="#000" stroke-width=".7"/><rect x="10" y="10" width="12" height="12" fill="#c0c0c0"/><rect x="6" y="12" width="4" height="2" fill="#ffd700"/><rect x="6" y="18" width="4" height="2" fill="#ffd700"/><rect x="22" y="12" width="4" height="2" fill="#ffd700"/><rect x="22" y="18" width="4" height="2" fill="#ffd700"/><rect x="12" y="6" width="2" height="4" fill="#ffd700"/><rect x="18" y="6" width="2" height="4" fill="#ffd700"/><rect x="12" y="22" width="2" height="4" fill="#ffd700"/><rect x="18" y="22" width="2" height="4" fill="#ffd700"/><text x="16" y="18" text-anchor="middle" font-size="6" fill="#000" font-weight="700">SVC</text></svg>
+    <span>Services.exe</span>
+  </div>
+  <div class="di" ondblclick="openWin('w4')">
+    <svg viewBox="0 0 32 32"><rect x="7" y="4" width="18" height="22" fill="#fffde0" stroke="#000" stroke-width=".7" rx="1"/><rect x="7" y="4" width="18" height="4" fill="#00007b" rx="1"/><line x1="10" y1="12" x2="22" y2="12" stroke="#4169e1" stroke-width=".5"/><line x1="10" y1="15" x2="22" y2="15" stroke="#4169e1" stroke-width=".5"/><line x1="10" y1="18" x2="22" y2="18" stroke="#4169e1" stroke-width=".5"/><line x1="10" y1="21" x2="18" y2="21" stroke="#4169e1" stroke-width=".5"/></svg>
+    <span>Bureauet.txt</span>
+  </div>
+  <div class="di" ondblclick="openWin('w5')">
+    <svg viewBox="0 0 32 32"><rect x="5" y="4" width="22" height="20" fill="#ffd700" stroke="#000" stroke-width=".7" rx="1"/><polygon points="16,8 17.5,13 23,13 18.5,16 20,21 16,18 12,21 13.5,16 9,13 14.5,13" fill="#fff" stroke="#b8960f" stroke-width=".5"/></svg>
+    <span>Awards</span>
+  </div>
+  <div class="di" ondblclick="openWin('w6')">
+    <svg viewBox="0 0 32 32"><rect x="4" y="6" width="24" height="16" fill="#fffde0" stroke="#000" stroke-width=".7" rx="1"/><polygon points="4,6 16,16 28,6" fill="none" stroke="#b8960f" stroke-width=".7"/><line x1="4" y1="22" x2="12" y2="15" stroke="#b8960f" stroke-width=".4"/><line x1="28" y1="22" x2="20" y2="15" stroke="#b8960f" stroke-width=".4"/></svg>
+    <span>Kontakt</span>
+  </div>
+  <div class="di" ondblclick="openWin('w7')">
+    <svg viewBox="0 0 32 32"><rect x="4" y="2" width="24" height="24" fill="#808080" stroke="#000" stroke-width=".7" rx="1"/><rect x="6" y="4" width="20" height="20" fill="#1c1c1c"/><text x="16" y="15" text-anchor="middle" font-size="7" fill="#fff" font-weight="700" font-family="Arial">GRAFIKR</text><rect x="9" y="18" width="14" height="1" fill="#ababab"/></svg>
+    <span>team.bmp</span>
+  </div>
+  <div class="di" ondblclick="openWin('w8')">
+    <svg viewBox="0 0 32 32"><rect x="9" y="9" width="14" height="16" rx="1" fill="#c0c0c0" stroke="#000" stroke-width=".7"/><rect x="7" y="6" width="18" height="4" rx="1" fill="#c0c0c0" stroke="#000" stroke-width=".7"/><rect x="12" y="4" width="8" height="3" fill="#c0c0c0" stroke="#000" stroke-width=".7"/><line x1="13" y1="13" x2="13" y2="22" stroke="#808080" stroke-width=".8"/><line x1="16" y1="13" x2="16" y2="22" stroke="#808080" stroke-width=".8"/><line x1="19" y1="13" x2="19" y2="22" stroke="#808080" stroke-width=".8"/></svg>
+    <span>Papirkurv</span>
+  </div>
+  <div class="di" ondblclick="openWin('w9')">
+    <svg viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" fill="#000" stroke="#000" stroke-width=".7" rx="2"/><rect x="6" y="8" width="4" height="4" fill="#0f0"/><rect x="10" y="8" width="4" height="4" fill="#0f0"/><rect x="14" y="8" width="4" height="4" fill="#0f0"/><rect x="14" y="12" width="4" height="4" fill="#0f0"/><rect x="14" y="16" width="4" height="4" fill="#0f0"/><rect x="22" y="20" width="4" height="4" fill="#f00"/></svg>
+    <span>Snake.exe</span>
+  </div>
+</div>
+
+<!-- W1: grafikr.dk (IE) -->
+<div class="w" id="w1" style="left:80px;top:20px;width:600px;height:480px;z-index:13" onclick="focus(this)">
+  <div class="tbar a" onmousedown="dStart(event,this.parentElement)">
+    <svg class="ico" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#4169e1" stroke="#000" stroke-width=".4"/><ellipse cx="7" cy="7" rx="2.5" ry="5" fill="none" stroke="#fff" stroke-width=".4"/><line x1="2" y1="5" x2="12" y2="5" stroke="#fff" stroke-width=".3"/><line x1="2" y1="9" x2="12" y2="9" stroke="#fff" stroke-width=".3"/></svg>
+    <span class="tt">Grafikr A/S - Microsoft Internet Explorer</span>
+    <div class="wbtn" onclick="minWin(event,'w1')">_</div>
+    <div class="wbtn" onclick="maxWin('w1')">□</div>
+    <div class="wbtn" onclick="closeWin(event,'w1')">×</div>
+  </div>
+  <div class="mbar"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span></div>
+  <div class="abar"><span>Address</span><div class="url">https://grafikr.dk</div></div>
+  <div class="wbody" style="background:#fff">
+    <div class="ie-hero">
+      <div class="ie-nav">
+        <a onclick="openWin('w2')">Kunder</a>
+        <a onclick="openWin('w3')">Services</a>
+        <a onclick="openWin('w4')">Bureauet</a>
+        <a onclick="openWin('w5')">Awards</a>
+        <a onclick="openWin('w6')">Kontakt</a>
+      </div>
+      <h1 style="font-size:14px;letter-spacing:3px;margin-bottom:8px">FØRENDE SHOPIFY BUREAU<br>I NORDEN</h1>
+      <div class="sub" style="font-size:12px;color:#c0c0c0">for ambitiøse mode- og livsstilsbrands</div>
+      <div class="sub">Skandinaviens første og eneste Shopify Platinum Partner</div>
+      <div class="badge">Udvalgt af Shopify · 2025</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">2016</div><div class="lbl">Etableret</div></div>
+      <div class="stat"><div class="num">20</div><div class="lbl">Specialister</div></div>
+      <div class="stat"><div class="num">Randers</div><div class="lbl">Hovedsæde</div></div>
+      <div class="stat"><div class="num">Platinum</div><div class="lbl">Shopify Partner</div></div>
+    </div>
+    <div style="padding:12px 20px">
+      <div class="ie-section">
+        <h3>Udvalgte Cases</h3>
+        <div class="case-grid">
+          <div class="case-card" ondblclick="openCase('mosmosh')"><div class="cn">MOS MOSH</div><div class="cd">En digital platform bygget til et brand i konstant bevægelse</div></div>
+          <div class="case-card" ondblclick="openCase('markberg')"><div class="cn">Markberg</div><div class="cd">Fra forældet 2020-tema til 73% vækst</div></div>
+          <div class="case-card" ondblclick="openCase('andersen')"><div class="cn">Andersen-Andersen</div><div class="cd">Håndværk og maritime rødder oversat til e-commerce</div></div>
+          <div class="case-card" ondblclick="openCase('sinnerup')"><div class="cn">Sinnerup</div><div class="cd">50 års butiksarv omsat til digital feng shui</div></div>
+          <div class="case-card" ondblclick="openCase('snt')"><div class="cn">Shaping New Tomorrow</div><div class="cd">Vækstambitioner og teknologi hånd i hånd</div></div>
+          <div class="case-card" ondblclick="openCase('rains')"><div class="cn">RAINS</div><div class="cd">CSS Design Award – Website of the Day 2023</div></div>
+        </div>
+        <div style="font-size:9px;color:#999;margin-top:6px">Dobbeltklik for at åbne case</div>
+      </div>
+      <div class="ie-section" style="border-bottom:none">
+        <h3>Services</h3>
+        <p style="font-size:11px;color:#333">Webdesign · Webudvikling · Re-branding · Migration · CRO · E-commerce Strategi · Shopify Plus · Headless Commerce</p>
+      </div>
+    </div>
+  </div>
+  <div class="sbar"><span style="flex:1">Udført</span><span>Internet</span></div>
+</div>
+
+<!-- W2: Kunder (Explorer) -->
+<div class="w" id="w2" style="left:320px;top:60px;width:560px;height:400px;z-index:12" onclick="focus(this)">
+  <div class="tbar a" onmousedown="dStart(event,this.parentElement)">
+    <svg class="ico" viewBox="0 0 14 14"><path d="M1 4v8h12V4H1z" fill="#ffd700" stroke="#000" stroke-width=".4"/><path d="M1 4V2.5h4l1 1.5" fill="#e6c200" stroke="#000" stroke-width=".4"/></svg>
+    <span class="tt">C:\Grafikr\Kunder</span>
+    <div class="wbtn" onclick="minWin(event,'w2')">_</div>
+    <div class="wbtn" onclick="maxWin('w2')">□</div>
+    <div class="wbtn" onclick="closeWin(event,'w2')">×</div>
+  </div>
+  <div class="mbar"><span>Filer</span><span>Rediger</span><span>Vis</span><span>Værktøjer</span><span>Hjælp</span></div>
+  <div class="wbody" style="display:flex">
+    <div class="exp-tree" id="caseTree">
+      <div class="tr-item sel" onclick="filterCases('all',this)" style="font-weight:700"><svg viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="10" fill="#ffd700" stroke="#000" stroke-width=".5" rx=".5"/></svg> Alle kunder</div>
+      <div class="tr-sub">
+        <div class="tr-item" onclick="filterCases('fashion',this)"><svg viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="10" fill="#ffd700" stroke="#000" stroke-width=".5" rx=".5"/></svg> Fashion</div>
+        <div class="tr-item" onclick="filterCases('lifestyle',this)"><svg viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="10" fill="#ffd700" stroke="#000" stroke-width=".5" rx=".5"/></svg> Lifestyle</div>
+        <div class="tr-item" onclick="filterCases('retail',this)"><svg viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="10" fill="#ffd700" stroke="#000" stroke-width=".5" rx=".5"/></svg> Retail</div>
+        <div class="tr-item" onclick="filterCases('beauty',this)"><svg viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="10" fill="#ffd700" stroke="#000" stroke-width=".5" rx=".5"/></svg> Beauty</div>
+      </div>
+    </div>
+    <div class="exp-list" id="caseList">
+      <div class="exp-hdr"><span>Navn</span><span>Services</span><span>Branche</span><span>Platform</span></div>
+    </div>
+  </div>
+  <div class="sbar"><span style="flex:1" id="caseCount">7 objekt(er)</span><span>Dobbeltklik for detaljer</span></div>
+</div>
+
+<!-- W3: Services.exe -->
+<div class="w hid" id="w3" style="left:200px;top:50px;width:430px;height:470px;z-index:10" onclick="focus(this)">
+  <div class="tbar a" onmousedown="dStart(event,this.parentElement)">
+    <svg class="ico" viewBox="0 0 14 14"><rect x="3" y="3" width="8" height="8" fill="#808080" stroke="#000" stroke-width=".4"/><rect x="4" y="4" width="6" height="6" fill="#c0c0c0"/><rect x="1" y="5" width="3" height="1.5" fill="#ffd700"/><rect x="10" y="5" width="3" height="1.5" fill="#ffd700"/></svg>
+    <span class="tt">Grafikr Services Properties</span>
+    <div class="wbtn" onclick="closeWin(event,'w3')">×</div>
+  </div>
+  <div class="tabs">
+    <div class="tab act" onclick="switchTab(this,0)">Oversigt</div>
+    <div class="tab" onclick="switchTab(this,1)">Design</div>
+    <div class="tab" onclick="switchTab(this,2)">Udvikling</div>
+    <div class="tab" onclick="switchTab(this,3)">Strategi</div>
+  </div>
+  <div class="tpanel" id="tp0">
+    <div class="grp"><div class="grp-t">System</div>
+      <div style="text-align:center;padding:8px 0">
+        <div style="font-size:16px;font-weight:700;color:#00007b;margin-bottom:4px">GRAFIKR A/S</div>
+        <div>Shopify Platinum Partner</div>
+        <div>Version 2026.6 (Build est. 2016)</div>
+      </div>
+    </div>
+    <div class="grp"><div class="grp-t">Kapaciteter</div>
+      <div class="sk-row"><div class="lbl">Shopify Plus</div><div class="bar"><span class="fill" style="width:100%"></span></div><div class="pct">100%</div></div>
+      <div class="sk-row"><div class="lbl">Webdesign</div><div class="bar"><span class="fill" style="width:95%"></span></div><div class="pct">95%</div></div>
+      <div class="sk-row"><div class="lbl">Webudvikling</div><div class="bar"><span class="fill" style="width:95%"></span></div><div class="pct">95%</div></div>
+      <div class="sk-row"><div class="lbl">Re-branding</div><div class="bar"><span class="fill" style="width:90%"></span></div><div class="pct">90%</div></div>
+      <div class="sk-row"><div class="lbl">CRO</div><div class="bar"><span class="fill" style="width:88%"></span></div><div class="pct">88%</div></div>
+      <div class="sk-row"><div class="lbl">Migration</div><div class="bar"><span class="fill" style="width:92%"></span></div><div class="pct">92%</div></div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#808080;padding-top:4px">Vi ønsker ikke bare at være din leverandør.<br>Vi vil være din vigtigste e-commerce partner.</div>
+  </div>
+  <div class="tpanel hid" id="tp1">
+    <div class="grp"><div class="grp-t">Design Services</div>
+      <div style="font-size:11px;line-height:1.6;padding:4px 0">
+        <b>UX/UI Design</b> — Brugercentreret design der konverterer besøgende til kunder. Vi skaber elegante, intuitive e-commerce løsninger.<br><br>
+        <b>Webdesign</b> — Skræddersyede Shopify-temaer der afspejler brandets identitet og DNA.<br><br>
+        <b>Re-branding</b> — Visuel identitet og digital tilstedeværelse der matcher ambitionerne. Fra logo til komplet webshop.<br><br>
+        <b>Konceptudvikling</b> — Fra idé til færdig digital oplevelse med fokus på æstetik, funktion og forretning.
+      </div>
+    </div>
+  </div>
+  <div class="tpanel hid" id="tp2">
+    <div class="grp"><div class="grp-t">Udvikling</div>
+      <div style="font-size:11px;line-height:1.6;padding:4px 0">
+        <b>Shopify Plus</b> — Custom themes, integrationer og app-udvikling. Online Store 2.0.<br><br>
+        <b>Platformmigrering</b> — Sikker migration fra WooCommerce, Magento, MCB.cloud m.fl. til Shopify.<br><br>
+        <b>Headless Commerce</b> — Hydrogen/Remix frontends med Shopify backend.<br><br>
+        <b>Integrationer</b> — ERP (Navision), PIM, betalingsgateways, Clerk, Voyado og logistik.
+      </div>
+    </div>
+  </div>
+  <div class="tpanel hid" id="tp3">
+    <div class="grp"><div class="grp-t">Strategi & CRO</div>
+      <div style="font-size:11px;line-height:1.6;padding:4px 0">
+        <b>E-commerce Strategi</b> — Vækstplaner og go-to-market for skalerbare brands.<br><br>
+        <b>CRO</b> — Konverteringsoptimering baseret på data og brugeradfærd. A/B test, RICE scoring.<br><br>
+        <b>Analytics</b> — GA4, tracking og datadrevet beslutningsgrundlag.<br><br>
+        <b>International ekspansion</b> — Shopify Markets, multi-language, global vækst.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- W4: Bureauet.txt (Notepad) -->
+<div class="w hid" id="w4" style="left:100px;top:30px;width:480px;height:440px;z-index:10" onclick="focus(this)">
+  <div class="tbar a" onmousedown="dStart(event,this.parentElement)">
+    <svg class="ico" viewBox="0 0 14 14"><rect x="2" y="1" width="10" height="12" fill="#fffde0" stroke="#000" stroke-width=".5" rx=".5"/><line x1="4" y1="5" x2="10" y2="5" stroke="#4169e1" stroke-width=".4"/><line x1="4" y1="7" x2="10" y2="7" stroke="#4169e1" stroke-width=".4"/><line x1="4" y1="9" x2="8" y2="9" stroke="#4169e1" stroke-width=".4"/></svg>
+    <span class="tt">Bureauet.txt - Notepad</span>
+    <div class="wbtn" onclick="minWin(event,'w4')">_</div>
+    <div class="wbtn" onclick="maxWin('w4')">□</div>
+    <div class="wbtn" onclick="closeWin(event,'w4')">×</div>
+  </div>
+  <div class="mbar"><span>Filer</span><span>Rediger</span><span>Søg</span><span>Hjælp</span></div>
+  <div class="wbody">
+    <div class="np">GRAFIKR A/S
+════════════════════════════════════════
+
+Titel:      Shopify Platinum Partner
+Type:       E-Commerce Bureau
+Lokation:   Jernbanegade 12A, 8900 Randers C
+Grundlagt:  2016
+Specialister: 20
+Web:        grafikr.dk
+
+════════════════════════════════════════
+
+Grafikr er et dansk Shopify-bureau, der
+udvikler e-commerce løsninger til mode-
+og livsstilsbrands. Med mange års
+erfaring skaber vi resultater gennem
+konceptudvikling, strategi, digitalt
+design og et stærkt udviklingsmiljø –
+altid med fokus på at kombinere
+forretning, funktion og æstetik.
+
+Bureauet blev grundlagt i 2016 af
+Kiranan Luxmy og Erik Holflod Jeppesen
+med målet om at blive det foretrukne
+e-commerce bureau i Skandinavien.
+
+Idéen kom efter, at begge partnere
+havde erfaring som webshop-ejere og
+var drevet af en passion for UX, CRO
+og den bagvedliggende arkitektur. De
+ønskede at skabe et bureau, hvor
+fagligheden kunne blomstre i et
+kreativt miljø præget af venskab,
+innovation og professionalisme.
+
+────────────────────────────────────────
+
+MISSION
+
+Vi realiserer dine mål. Vi tager
+arbejdshandskerne på og handler, så
+du får fuldt ejerskab over kunderejsen
+og placerer dit brand i førersædet.
+Ingen unødig kompleksitet.
+
+────────────────────────────────────────
+
+VÆRDIER
+
+• Vi elsker e-handel. Det er det
+  eneste vi arbejder med, og vi kender
+  branchen til fingerspidserne.
+
+• Konstant forbedring. Hver dag
+  stræber vi efter at forbedre
+  e-handelsoplevelsen.
+
+• Fællesskab. De bedste resultater
+  opstår, når mennesker mødes og
+  sidder tæt sammen.
+
+────────────────────────────────────────
+
+CERTIFICERINGER
+
+2018  Shopify Expert
+2023  Shopify Plus Partner
+2025  Shopify Premier Partner
+2025  Shopify Platinum Partner
+      (eneste i Norden)
+
+────────────────────────────────────────
+Sidst gemt: 11-06-2026 15:20<span class="cur"></span></div>
+  </div>
+  <div class="sbar"><span style="flex:1">Ln 1, Kol 1</span><span>UTF-8</span></div>
+</div>
+
+<!-- W5: Awards -->
+<div class="w hid" id="w5" style="left:150px;top:50px;width:520px;height:400px;z-index:10" onclick="focus(this)">
+  <div class="tbar a" onmousedown="dStart(event,this.parentElement)">
+    <svg class="ico" viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="9" fill="#ffd700" stroke="#000" stroke-width=".4" rx=".5"/><polygon points="7,3 8,6 11,6 8.5,8 9.5,11 7,9 4.5,11 5.5,8 3,6 6,6" fill="#fff" stroke="#b8960f" stroke-width=".3"/></svg>
+    <span class="tt">C:\Grafikr\Awards</span>
+    <div class="wbtn" onclick="minWin(event,'w5')">_</div>
+    <div class="wbtn" onclick="maxWin('w5')">□</div>
+    <div class="wbtn" onclick="closeWin(event,'w5')">×</div>
+  </div>
+  <div class="mbar"><span>Filer</span><span>Rediger</span><span>Vis</span><span>Hjælp</span></div>
+  <div class="wbody">
+    <div class="aw-hdr"><span>År</span><span>Organisation</span><span>Award</span><span>Modtager</span></div>
+    <div class="aw-row"><span>2025</span><span>Shopify</span><span>Platinum Partner</span><span>Grafikr</span></div>
+    <div class="aw-row"><span>2025</span><span>Shopify</span><span>Premier Partner</span><span>Grafikr</span></div>
+    <div class="aw-row"><span>2024</span><span>E-handelsprisen</span><span>Bedste case (nom.)</span><span>RAINS</span></div>
+    <div class="aw-row"><span>2024</span><span>ZOIOS</span><span>Happy Workplace</span><span>Grafikr</span></div>
+    <div class="aw-row"><span>2023</span><span>Børsen</span><span>Gazelle</span><span>Grafikr</span></div>
+    <div class="aw-row"><span>2023</span><span>CSS Design Awards</span><span>Website of the Day</span><span>RAINS</span></div>
+    <div class="aw-row"><span>2023</span><span>Shopify</span><span>Plus Partnership</span><span>Grafikr</span></div>
+    <div class="aw-row"><span>2023</span><span>Randers Kommune</span><span>CSR-certifikat</span><span>Grafikr</span></div>
+    <div class="aw-row"><span>2023</span><span>ZOIOS</span><span>Happy Workplace</span><span>Grafikr</span></div>
+    <div class="aw-row"><span>2022</span><span>Børsen</span><span>Gazelle</span><span>Grafikr</span></div>
+    <div class="aw-row"><span>2022</span><span>E-handelsprisen</span><span>Bedste case (nom.)</span><span>SNT</span></div>
+    <div class="aw-row"><span>2022</span><span>ZOIOS</span><span>Happy Workplace</span><span>Grafikr</span></div>
+    <div class="aw-row"><span>2021</span><span>Børsen</span><span>Gazelle</span><span>Grafikr</span></div>
+    <div class="aw-row"><span>2021</span><span>CSS Design Awards</span><span>Website of the Day</span><span>Læsk</span></div>
+    <div class="aw-row"><span>2018</span><span>Randers Business</span><span>Årets Iværksætter</span><span>Grafikr</span></div>
+    <div class="aw-row"><span>2018</span><span>Shopify</span><span>Expert-certifikat</span><span>Grafikr</span></div>
+  </div>
+  <div class="sbar"><span style="flex:1">16 objekt(er)</span><span>2018 – 2025</span></div>
+</div>
+
+<!-- W6: Kontakt -->
+<div class="w hid" id="w6" style="left:250px;top:80px;width:420px;height:320px;z-index:10" onclick="focus(this)">
+  <div class="tbar a" onmousedown="dStart(event,this.parentElement)">
+    <svg class="ico" viewBox="0 0 14 14"><rect x="1" y="3" width="12" height="8" fill="#fffde0" stroke="#000" stroke-width=".4" rx=".5"/><polygon points="1,3 7,8 13,3" fill="none" stroke="#b8960f" stroke-width=".4"/></svg>
+    <span class="tt">Kontakt - Microsoft Internet Explorer</span>
+    <div class="wbtn" onclick="minWin(event,'w6')">_</div>
+    <div class="wbtn" onclick="maxWin('w6')">□</div>
+    <div class="wbtn" onclick="closeWin(event,'w6')">×</div>
+  </div>
+  <div class="mbar"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span></div>
+  <div class="abar"><span>Address</span><div class="url">https://grafikr.dk/kontakt</div></div>
+  <div class="wbody">
+    <div class="ie-page">
+      <h1>Kontakt Grafikr</h1>
+      <h2>Kontor</h2>
+      <div class="field"><span class="k">Virksomhed:</span><span class="v">Grafikr A/S</span></div>
+      <div class="field"><span class="k">Adresse:</span><span class="v">Jernbanegade 12A, 8900 Randers C</span></div>
+      <div class="field"><span class="k">Telefon:</span><span class="v">(+45) 7171 7071</span></div>
+      <h2>E-mail</h2>
+      <div class="field"><span class="k">Samarbejde:</span><span class="v"><a>kontakt@grafikr.dk</a></span></div>
+      <div class="field"><span class="k">Support:</span><span class="v"><a>support@grafikr.dk</a></span></div>
+      <div class="field"><span class="k">Web:</span><span class="v"><a>grafikr.dk</a></span></div>
+      <h2>Ledelse</h2>
+      <div class="field"><span class="k">CEO:</span><span class="v">Kiranan Luxmy</span></div>
+      <div class="field"><span class="k">Founder:</span><span class="v">Erik Holflod Jeppesen</span></div>
+    </div>
+  </div>
+  <div class="sbar"><span style="flex:1">Udført</span><span>Internet</span></div>
+</div>
+
+<!-- W7: team.bmp -->
+<div class="w hid" id="w7" style="left:180px;top:40px;width:400px;height:320px;z-index:10" onclick="focus(this)">
+  <div class="tbar a" onmousedown="dStart(event,this.parentElement)">
+    <svg class="ico" viewBox="0 0 14 14"><rect x="2" y="2" width="10" height="10" fill="#808080" stroke="#000" stroke-width=".4"/><rect x="3" y="3" width="8" height="8" fill="#1c1c1c"/></svg>
+    <span class="tt">team.bmp - Paint</span>
+    <div class="wbtn" onclick="minWin(event,'w7')">_</div>
+    <div class="wbtn" onclick="maxWin('w7')">□</div>
+    <div class="wbtn" onclick="closeWin(event,'w7')">×</div>
+  </div>
+  <div class="mbar"><span>File</span><span>Edit</span><span>View</span><span>Image</span><span>Help</span></div>
+  <div class="wbody" style="background:#1c1c1c;display:flex;align-items:center;justify-content:center">
+    <div style="text-align:center;color:#fff;font-family:Arial,sans-serif">
+      <div style="font-size:28px;font-weight:700;letter-spacing:4px;margin-bottom:12px">GRAFIKR</div>
+      <div style="width:200px;height:1px;background:#ababab;margin:0 auto 12px"></div>
+      <div style="font-size:10px;color:#ababab;letter-spacing:2px;text-transform:uppercase">Shopify Platinum Partner</div>
+      <div style="font-size:9px;color:#666;margin-top:8px">Randers · Danmark · Est. 2016</div>
+      <div style="margin-top:20px;display:flex;gap:16px;justify-content:center">
+        <div style="text-align:center"><div style="width:40px;height:40px;border-radius:50%;background:#333;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:14px">👤</div><div style="font-size:8px;color:#888">KL</div></div>
+        <div style="text-align:center"><div style="width:40px;height:40px;border-radius:50%;background:#333;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:14px">👤</div><div style="font-size:8px;color:#888">EHJ</div></div>
+        <div style="text-align:center"><div style="width:40px;height:40px;border-radius:50%;background:#333;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:14px">👥</div><div style="font-size:8px;color:#888">+18</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sbar"><span style="flex:1">800 x 600 pixels</span><span>24-bit</span></div>
+</div>
+
+<!-- W8: Papirkurv -->
+<div class="w hid" id="w8" style="left:160px;top:60px;width:460px;height:320px;z-index:10" onclick="focus(this)">
+  <div class="tbar a" onmousedown="dStart(event,this.parentElement)">
+    <svg class="ico" viewBox="0 0 14 14"><rect x="4" y="4" width="6" height="7" rx=".5" fill="#c0c0c0" stroke="#000" stroke-width=".4"/><rect x="3" y="2.5" width="8" height="2" rx=".5" fill="#c0c0c0" stroke="#000" stroke-width=".4"/></svg>
+    <span class="tt">Papirkurv</span>
+    <div class="wbtn" onclick="minWin(event,'w8')">_</div>
+    <div class="wbtn" onclick="maxWin('w8')">□</div>
+    <div class="wbtn" onclick="closeWin(event,'w8')">×</div>
+  </div>
+  <div class="mbar"><span>Filer</span><span>Rediger</span><span>Vis</span><span>Hjælp</span></div>
+  <div class="wbody">
+    <div class="trash-hdr"><span>Navn</span><span>Størrelse</span><span>Type</span><span>Slettet</span></div>
+    <div class="trash-row"><span><svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000" stroke-width=".5" rx=".5"/><line x1="5" y1="5" x2="11" y2="5" stroke="#808080" stroke-width=".4"/><line x1="5" y1="7" x2="11" y2="7" stroke="#808080" stroke-width=".4"/></svg>magento_backup_2019.sql</span><span>2,4 GB</span><span>SQL-fil</span><span>16-03-22</span></div>
+    <div class="trash-row"><span><svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000" stroke-width=".5" rx=".5"/><line x1="5" y1="5" x2="11" y2="5" stroke="#808080" stroke-width=".4"/><line x1="5" y1="7" x2="11" y2="7" stroke="#808080" stroke-width=".4"/></svg>woocommerce_til_shopify.xlsx</span><span>847 KB</span><span>Regneark</span><span>04-01-23</span></div>
+    <div class="trash-row"><span><svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000" stroke-width=".5" rx=".5"/><line x1="5" y1="5" x2="11" y2="5" stroke="#808080" stroke-width=".4"/><line x1="5" y1="7" x2="11" y2="7" stroke="#808080" stroke-width=".4"/></svg>endelig_version_FINAL_v3(2).psd</span><span>340 MB</span><span>Photoshop</span><span>22-09-23</span></div>
+    <div class="trash-row"><span><svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000" stroke-width=".5" rx=".5"/><line x1="5" y1="5" x2="11" y2="5" stroke="#808080" stroke-width=".4"/><line x1="5" y1="7" x2="11" y2="7" stroke="#808080" stroke-width=".4"/></svg>klient_der_ville_have_wordpress.msg</span><span>52 KB</span><span>Outlook</span><span>11-02-24</span></div>
+    <div class="trash-row"><span><svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000" stroke-width=".5" rx=".5"/><line x1="5" y1="5" x2="11" y2="5" stroke="#808080" stroke-width=".4"/><line x1="5" y1="7" x2="11" y2="7" stroke="#808080" stroke-width=".4"/></svg>node_modules.zip</span><span>1,8 GB</span><span>ZIP-arkiv</span><span>30-06-24</span></div>
+    <div class="trash-row"><span><svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000" stroke-width=".5" rx=".5"/><line x1="5" y1="5" x2="11" y2="5" stroke="#808080" stroke-width=".4"/><line x1="5" y1="7" x2="11" y2="7" stroke="#808080" stroke-width=".4"/></svg>gammel_logo_BRUG_IKKE.ai</span><span>12 MB</span><span>Illustrator</span><span>15-08-24</span></div>
+    <div class="trash-row"><span><svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000" stroke-width=".5" rx=".5"/><line x1="5" y1="5" x2="11" y2="5" stroke="#808080" stroke-width=".4"/><line x1="5" y1="7" x2="11" y2="7" stroke="#808080" stroke-width=".4"/></svg>TODO_liste_2021.txt</span><span>3 KB</span><span>Tekstfil</span><span>01-01-25</span></div>
+    <div class="trash-row"><span><svg viewBox="0 0 16 16"><path d="M2 4v10h12V4H2z" fill="#ffd700" stroke="#000" stroke-width=".5"/><path d="M2 4V2.5h4l1 1.5" fill="#e6c200" stroke="#000" stroke-width=".5"/></svg>.git_backup_backup_backup</span><span>4,2 GB</span><span>Mappe</span><span>17-04-25</span></div>
+    <div class="trash-row"><span><svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000" stroke-width=".5" rx=".5"/><line x1="5" y1="5" x2="11" y2="5" stroke="#808080" stroke-width=".4"/><line x1="5" y1="7" x2="11" y2="7" stroke="#808080" stroke-width=".4"/></svg>bare_lige_en_hurtig_fix.js</span><span>1 KB</span><span>JavaScript</span><span>09-06-26</span></div>
+  </div>
+  <div class="sbar"><span style="flex:1">9 objekt(er) — 8,6 GB</span><span>Tøm papirkurv ❌</span></div>
+</div>
+
+<!-- W9: Snake.exe -->
+<div class="w hid" id="w9" style="left:200px;top:40px;width:340px;height:400px;z-index:10" onclick="focus(this)">
+  <div class="tbar a" onmousedown="dStart(event,this.parentElement)">
+    <svg class="ico" viewBox="0 0 14 14"><rect x="1" y="1" width="12" height="12" fill="#000" rx="1"/><rect x="3" y="5" width="3" height="3" fill="#0f0"/><rect x="6" y="5" width="3" height="3" fill="#0f0"/><rect x="9" y="5" width="3" height="3" fill="#0f0"/></svg>
+    <span class="tt">Snake.exe</span>
+    <div class="wbtn" onclick="minWin(event,'w9')">_</div>
+    <div class="wbtn" onclick="maxWin('w9')">□</div>
+    <div class="wbtn" onclick="closeWin(event,'w9');stopSnake()">×</div>
+  </div>
+  <div class="wbody" style="background:#000;padding:0">
+    <div class="snake-wrap">
+      <div class="snake-hud"><span>Score: <span id="snkScore">0</span></span><span>Hi: <span id="snkHi">0</span></span></div>
+      <canvas id="snkC" width="280" height="280"></canvas>
+      <div class="snake-msg" id="snkMsg">Tryk SPACE for at starte</div>
+    </div>
+  </div>
+  <div class="sbar"><span style="flex:1">Piletaster = styr · Space = start/pause</span></div>
+</div>
+
+<!-- Dynamic case windows get injected here -->
+<div id="caseWindows"></div>
+
+<!-- Start Menu -->
+<div class="smenu" id="sm">
+  <div class="sm-side"><span>GRAFIKR</span></div>
+  <div class="sm-list">
+    <div class="smi" onclick="openWin('w1');toggleSM()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#4169e1"/><ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="#fff" stroke-width=".5"/><line x1="3" y1="8" x2="21" y2="8" stroke="#fff" stroke-width=".4"/><line x1="3" y1="16" x2="21" y2="16" stroke="#fff" stroke-width=".4"/></svg>grafikr.dk</div>
+    <div class="smi" onclick="openWin('w2');toggleSM()"><svg viewBox="0 0 24 24"><path d="M3 8v12h18V8H3z" fill="#ffd700" stroke="#000" stroke-width=".5"/><path d="M3 8V5.5h6l1.5 2.5" fill="#e6c200" stroke="#000" stroke-width=".5"/></svg>Kunder</div>
+    <div class="smi" onclick="openWin('w3');toggleSM()"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" fill="#808080" stroke="#000" stroke-width=".5"/><rect x="7.5" y="7.5" width="9" height="9" fill="#c0c0c0"/></svg>Services</div>
+    <div class="smi" onclick="openWin('w4');toggleSM()"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" fill="#fffde0" stroke="#000" stroke-width=".5" rx="1"/><line x1="8" y1="8" x2="16" y2="8" stroke="#4169e1" stroke-width=".4"/><line x1="8" y1="11" x2="16" y2="11" stroke="#4169e1" stroke-width=".4"/></svg>Bureauet</div>
+    <div class="smi" onclick="openWin('w5');toggleSM()"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="14" fill="#ffd700" stroke="#000" stroke-width=".5" rx="1"/><polygon points="12,6 13.5,10 17,10 14,12.5 15,16 12,14 9,16 10,12.5 7,10 10.5,10" fill="#fff"/></svg>Awards</div>
+    <div class="smi" onclick="openWin('w6');toggleSM()"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" fill="#fffde0" stroke="#000" stroke-width=".5" rx="1"/><polygon points="3,6 12,14 21,6" fill="none" stroke="#b8960f" stroke-width=".5"/></svg>Kontakt</div>
+    <div class="sm-sep"></div>
+    <div class="smi" onclick="openWin('w9');initSnake();toggleSM()"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" fill="#000" rx="2"/><rect x="5" y="9" width="4" height="4" fill="#0f0"/><rect x="9" y="9" width="4" height="4" fill="#0f0"/><rect x="13" y="9" width="4" height="4" fill="#0f0"/><rect x="17" y="13" width="3" height="3" fill="#f00"/></svg>Snake.exe</div>
+    <div class="sm-sep"></div>
+    <div class="smi" onclick="shutdown()"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="12" fill="#808080" stroke="#000" stroke-width=".5"/><rect x="5.5" y="5.5" width="13" height="8" fill="#000"/><rect x="9" y="16" width="6" height="2" fill="#808080" stroke="#000" stroke-width=".3"/></svg>Luk ned...</div>
+  </div>
+</div>
+
+<!-- Taskbar -->
+<div class="tkbar">
+  <button class="stbtn" id="stb" onclick="toggleSM()">
+    <svg width="16" height="16" viewBox="0 0 16 16"><rect x="1" y="1" width="6" height="6" fill="#f00"/><rect x="8" y="1" width="6" height="6" fill="#0f0"/><rect x="1" y="8" width="6" height="6" fill="#00f"/><rect x="8" y="8" width="6" height="6" fill="#ff0"/></svg>
+    Start
+  </button>
+  <div class="tk-sep"></div>
+  <div class="tk-items" id="tkitems"></div>
+  <div class="tk-clock">
+    <svg width="14" height="14" viewBox="0 0 14 14"><rect x="1" y="1" width="12" height="10" rx=".5" fill="#808080" stroke="#000" stroke-width=".3"/><rect x="2" y="2" width="10" height="7" fill="#008080"/></svg>
+    <span id="clock">15:20</span>
+  </div>
+</div>
+
+<div class="ctx" id="ctx">
+  <div class="ctx-item" onclick="arrangeIcons()">Arrangér ikoner</div>
+  <div class="ctx-item" onclick="lineUpIcons()">Justér ikoner</div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" onclick="toggleWP()">Skift baggrund</div>
+  <div class="ctx-item" onclick="refresh()">Opdater</div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" onclick="openWin('w3');hideCtx()">Egenskaber</div>
+</div>
+
+<div id="sd">
+  <p>Det er nu sikkert at slukke<br>din computer.</p>
+  <div class="sub">Klik for at genstarte</div>
+</div>
+
+</div>
+
+<script>
+// === CASE DATA ===
+var cases = {
+  mosmosh: {
+    name: 'MOS MOSH', file: 'MOS_MOSH.doc', cat: 'fashion',
+    services: 'Design, Dev', platform: 'Shopify Plus', since: '2023', market: 'DK, Europa',
+    url: 'mosmosh.dk',
+    headline: 'En digital platform bygget til et brand i konstant bevægelse',
+    challenge: 'Mos Mosh blev grundlagt i 2010 af Kim Hyldahl. I årene op til 2023 havde de arbejdet målrettet med at opbygge deres brand. Næste skridt var at styrke e-commerce-delen med en mere kommerciel og skalerbar webshop. Skiftet til GRAFIKR startede med et konkret projekt: en ny produktside. Resultatet blev startskuddet til et tæt samarbejde.',
+    solution: 'Digitalt Produktpas med fuld gennemsigtighed. Redesignede kategorisider med bedre filtrering. Optimeret kurv med Gift With Purchase. Automatiseret Shop the Look-funktion. Markant hastighedsoptimering. Struktureret produktinformation via Navision-metadata. Forbedret mobilnavigation.',
+    result: 'Brandets position styrket, kundeoplevelsen mere sammenhængende, og salget sker på et værdigrundlag der matcher DNA. Webshoppen opgraderet til Online Store 2.0.',
+    quote: 'Det var tydeligt, at Grafikr allerede inden projektopstart havde sat sig grundigt ind i vores behov.',
+    quoteAttr: 'Mos Mosh Team',
+    team: 'Erik Holflod Jeppesen, Christian Vingborg Dahl, Lasse Bundsgaard Hansen, Patrick Koo Madsen',
+    stats: null
+  },
+  markberg: {
+    name: 'Markberg', file: 'Markberg.doc', cat: 'fashion',
+    services: 'Relaunch', platform: 'Shopify Plus', since: '2020', market: 'DK, NO, Europa',
+    url: 'markberg.com',
+    headline: 'Fra forældet 2020-tema til 73% vækst',
+    challenge: 'Markbergs webshop var bygget på et fundament fra 2020. Temaet var teknisk begrænset og gav et inddæmmet udtryk, der ikke afspejlede det skandinaviske univers brandet er bygget på. Vedligeholdelse krævede dyre specialtilpasninger.',
+    solution: 'Grundig gennemgang af alle eksisterende features. Nyt tema med tilpassede features ovenpå – ingen features gik tabt. "Match med"-funktion for manuelle produktanbefalinger. Raptor erstattet af Shopify Search & Discovery. Størrelsesguiderne rykket tættere på størrelsesvælgeren. Flytning fra tags til Meta Fields.',
+    result: 'Markant vækst i total salg, ordrer og konverteringsrate. Returneringer reduceret kraftigt. Drifts- og systemomkostninger gået ned trods skaleret omsætning.',
+    quote: 'Grafikr fungerer som en slags forlænget arm af teamet – altid til rådighed med tryg og kompetent sparring.',
+    quoteAttr: 'Malene Svendsen, Head of Ecommerce',
+    team: 'Nicolai Christiansen, Erik Holflod Jeppesen',
+    stats: [{n:'↑ 73%',l:'Total salg'},{n:'↑ 80%',l:'Ordrer'},{n:'↑ 7%',l:'CVR'},{n:'↓ 45%',l:'Retur'}]
+  },
+  andersen: {
+    name: 'Andersen-Andersen', file: 'Andersen_Andersen.doc', cat: 'fashion',
+    services: 'Rebrand', platform: 'Shopify', since: '2024', market: 'Globalt',
+    url: 'andersen-andersen.com',
+    headline: 'Håndværk og maritime rødder – oversat til e-commerce',
+    challenge: 'Andersen-Andersen startede med en ambition om at skabe verdens bedste sømandssweater. Deres digitale univers afspejlede endnu ikke den samme ro, tyngde og autenticitet som produkterne og den fysiske butik. De kontaktede os i 2024 med ønske om at oversætte deres identitet til en webshop, der føles lige så gennemtænkt som deres strik.',
+    solution: 'Minimalistisk design med inspiration fra gamle søfartsjournaler. Layout bygget op omkring kolonner og rækker i faste proportioner. Farvepalette reduceret til sort, hvid og ikonisk orange signalfarve. Klassisk, konsekvent typografi. Shuffle-funktion ved filtre for at gå på opdagelse.',
+    result: 'Det digitale univers trækker tydelige referencer til brandets maritime rødder. De stringente linjer fjerner støj og skaber en fokuseret brugeroplevelse. Webshoppen taler samme sprog som produkterne.',
+    quote: null, quoteAttr: null,
+    team: 'Allan Bay Andersen, Christian Vingborg Dahl, Magnus Lyngsø, Tor Brandt',
+    stats: null
+  },
+  sinnerup: {
+    name: 'Sinnerup', file: 'Sinnerup.doc', cat: 'retail',
+    services: 'Migration', platform: 'Shopify Plus', since: '2024', market: 'DK, Tyskland',
+    url: 'sinnerup.dk',
+    headline: '50 års butiksarv – nu omsat til en digital feng shui oplevelse',
+    challenge: 'Sinnerup har i 50 år været synonym med kvalitet, design og god service. Den tidligere webshop på MCB.cloud manglede struktur og visuel ro. Målet var at skabe en digital indretning der kombinerer æstetik, funktionalitet og inspiration.',
+    solution: 'Migration fra MCB.cloud til Shopify Plus. Custom theme bygget fra bunden. App-lignende mobilmenu. Clerk Search & Recommendations. Shop the Look-sektion. Perfect Match-anbefalinger. Miljøvisning af produkter. Automatisk samkøbsrabat.',
+    result: 'Webshoppen guider brugerne intuitivt fra inspiration til køb med minimalistisk design. Langt bedre brugervenlighed, løft i konverteringsraten og et digitalt udtryk der matcher ambitionerne.',
+    quote: null, quoteAttr: null,
+    team: 'Tor Brandt, Kasper Nørbæk, Marc Jesse, Lasse B. Hansen, Christian V. Dahl',
+    stats: null
+  },
+  snt: {
+    name: 'Shaping New Tomorrow', file: 'Shaping_New_Tomorrow.doc', cat: 'fashion',
+    services: 'Redesign', platform: 'Shopify Plus', since: '2018', market: 'Globalt',
+    url: 'shapingnewtomorrow.dk',
+    headline: 'Når vækstambitioner og teknologi skal gå hånd i hånd',
+    challenge: 'SNT og Grafikr krydsede første gang veje i 2018 med en unik Shopify Plus-løsning. Denne gang tog Grafikr initiativet, da en ny teknologi var tilgængelig. Fokus skiftede fra performance-optimering til procesoptimering for at klæde SNT på til udlandseventyr.',
+    solution: 'Version 2.0 bygget med udgangspunkt i data fremfor mavefornemmelser. Synkroniserede koder på tværs af lande. Scraping og oprydning i kodebase. Nemt at oprette nye produktkategorier for hurtig skalering. Væsentlige justeringer på kundeservice-fronten.',
+    result: 'Komplet redesign optimeret for købsoplevelser, brugeradfærd og opskalering. På under én dag kan de kopiere koder til nye lande. Langt mere brugervenlig webshop med højere konverteringsrater.',
+    quote: null, quoteAttr: null,
+    team: 'Magnus Lyngsø, Anders Bo S. Henriksen, Anders Hagbard Søgaard, Kiranan Luxmy',
+    stats: null
+  },
+  rains: {
+    name: 'RAINS', file: 'RAINS.doc', cat: 'fashion',
+    services: 'Design, Dev', platform: 'Shopify Plus', since: '2022', market: 'Globalt',
+    url: 'rains.com',
+    headline: 'CSS Design Award – Website of the Day 2023',
+    challenge: 'RAINS søgte en partner der kunne matche deres kompromisløse tilgang til design med en e-commerce oplevelse på samme niveau.',
+    solution: 'Custom Shopify Plus-løsning med fokus på visuelt storytelling og brand-DNA.',
+    result: 'Vinder af CSS Design Awards Website of the Day 2023. Nomineret til E-handelsprisen Bedste E-handelscase 2024.',
+    quote: null, quoteAttr: null,
+    team: 'Grafikr Team',
+    stats: null
+  },
+  laesk: {
+    name: 'Læsk Kombucha', file: 'Laesk_Kombucha.doc', cat: 'lifestyle',
+    services: 'Design, Dev', platform: 'Shopify', since: '2021', market: 'Danmark',
+    url: 'laesk.dk',
+    headline: 'CSS Design Award – Website of the Day 2021',
+    challenge: 'Læsk Kombucha ønskede en webshop der afspejlede deres legende og farverige brand-univers.',
+    solution: 'Custom Shopify-tema med fokus på æstetik og brand-storytelling.',
+    result: 'Vinder af CSS Design Awards Website of the Day 2021.',
+    quote: null, quoteAttr: null,
+    team: 'Grafikr Team',
+    stats: null
+  }
+};
+
+// === WINDOW SYSTEM ===
+var drag=null, zIdx=20, activeWin=null;
+var wins={w1:{title:'grafikr.dk',open:true},w2:{title:'Kunder',open:true},w3:{title:'Services.exe',open:false},w4:{title:'Bureauet.txt',open:false},w5:{title:'Awards',open:false},w6:{title:'Kontakt',open:false},w7:{title:'team.bmp',open:false},w8:{title:'Papirkurv',open:false},w9:{title:'Snake.exe',open:false}};
+var caseWinCounter = 100;
+
+function focus(el){
+  if(!el||el.classList.contains('hid'))return;
+  zIdx++;el.style.zIndex=zIdx;activeWin=el.id;
+  document.querySelectorAll('.w').forEach(function(w){
+    var tb=w.querySelector('.tbar');
+    if(w.id===el.id){tb.classList.add('a');tb.classList.remove('i')}
+    else{tb.classList.remove('a');tb.classList.add('i')}
+  });
+  updateTaskbar();
+}
+
+function dStart(e,win){
+  if(e.target.classList.contains('wbtn'))return;
+  var r=win.getBoundingClientRect();var dr=document.getElementById('desk').getBoundingClientRect();
+  drag={el:win,ox:e.clientX-r.left,oy:e.clientY-r.top,dl:dr.left,dt:dr.top};
+  focus(win);e.preventDefault();
+}
+document.addEventListener('mousemove',function(e){if(!drag)return;drag.el.style.left=(e.clientX-drag.dl-drag.ox)+'px';drag.el.style.top=(e.clientY-drag.dt-drag.oy)+'px'});
+document.addEventListener('mouseup',function(){drag=null});
+
+function openWin(id){var el=document.getElementById(id);el.classList.remove('hid');wins[id].open=true;focus(el);updateTaskbar()}
+function closeWin(e,id){e.stopPropagation();document.getElementById(id).classList.add('hid');wins[id].open=false;updateTaskbar()}
+function minWin(e,id){e.stopPropagation();document.getElementById(id).classList.add('hid');updateTaskbar()}
+
+function updateTaskbar(){
+  var c=document.getElementById('tkitems');c.innerHTML='';
+  Object.keys(wins).forEach(function(id){
+    var w=wins[id];if(!w.open)return;
+    var el=document.getElementById(id);var isHid=el.classList.contains('hid');
+    var d=document.createElement('div');
+    d.className='tki'+((!isHid&&activeWin===id)?' act':'');
+    d.textContent=w.title;
+    d.onclick=function(){
+      if(el.classList.contains('hid')){el.classList.remove('hid');focus(el)}
+      else if(activeWin===id){el.classList.add('hid');updateTaskbar()}
+      else focus(el);
+    };
+    c.appendChild(d);
+  });
+}
+
+function toggleSM(){var m=document.getElementById('sm'),b=document.getElementById('stb');if(m.classList.contains('open')){m.classList.remove('open');b.classList.remove('pr')}else{m.classList.add('open');b.classList.add('pr')}}
+document.getElementById('desk').addEventListener('click',function(e){var sm=document.getElementById('sm');if(sm.classList.contains('open')&&!sm.contains(e.target)&&!document.getElementById('stb').contains(e.target)){sm.classList.remove('open');document.getElementById('stb').classList.remove('pr')}});
+function switchTab(tabEl,idx){tabEl.parentElement.querySelectorAll('.tab').forEach(function(t){t.classList.remove('act')});tabEl.classList.add('act');var win=tabEl.closest('.w');win.querySelectorAll('.tpanel').forEach(function(p,i){if(i===idx)p.classList.remove('hid');else p.classList.add('hid')})}
+function shutdown(){toggleSM();document.getElementById('sd').classList.add('on')}
+document.getElementById('sd').addEventListener('click',function(){this.classList.remove('on')});
+
+function updateClock(){var d=new Date(),h=d.getHours(),m=d.getMinutes();document.getElementById('clock').textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m}
+updateClock();setInterval(updateClock,30000);
+
+// === CASES EXPLORER ===
+function renderCases(filter){
+  var list=document.getElementById('caseList');
+  var hdr='<div class="exp-hdr"><span>Navn</span><span>Services</span><span>Branche</span><span>Platform</span></div>';
+  var rows='';var count=0;
+  var docIcon='<svg viewBox="0 0 16 16"><rect x="2" y="1" width="12" height="14" fill="#fff" stroke="#000" stroke-width=".5" rx=".5"/><line x1="5" y1="5" x2="11" y2="5" stroke="#00007b" stroke-width=".4"/><line x1="5" y1="7" x2="11" y2="7" stroke="#00007b" stroke-width=".4"/><line x1="5" y1="9" x2="9" y2="9" stroke="#00007b" stroke-width=".4"/></svg>';
+  Object.keys(cases).forEach(function(key){
+    var c=cases[key];
+    if(filter!=='all'&&c.cat!==filter)return;
+    count++;
+    rows+='<div class="exp-row" ondblclick="openCase(\''+key+'\')" title="Dobbeltklik for at åbne">'
+      +'<span>'+docIcon+c.file+'</span>'
+      +'<span>'+c.services+'</span>'
+      +'<span style="text-transform:capitalize">'+c.cat+'</span>'
+      +'<span>'+c.platform+'</span></div>';
+  });
+  list.innerHTML=hdr+rows;
+  document.getElementById('caseCount').textContent=count+' objekt(er)';
+}
+
+function filterCases(cat,el){
+  document.querySelectorAll('#caseTree .tr-item').forEach(function(i){i.classList.remove('sel')});
+  if(el)el.classList.add('sel');
+  renderCases(cat);
+}
+
+// === DYNAMIC CASE WINDOWS ===
+function openCase(key){
+  // Check if already open
+  var existingId='wc_'+key;
+  if(wins[existingId]&&wins[existingId].open){
+    var el=document.getElementById(existingId);
+    el.classList.remove('hid');focus(el);return;
+  }
+  // Check if window exists but closed
+  if(document.getElementById(existingId)){
+    wins[existingId].open=true;
+    var el=document.getElementById(existingId);
+    el.classList.remove('hid');focus(el);updateTaskbar();return;
+  }
+  var c=cases[key];if(!c)return;
+  var id=existingId;
+  var ox=120+Math.random()*200|0, oy=30+Math.random()*100|0;
+
+  var statsHtml='';
+  if(c.stats){
+    statsHtml='<div class="case-stats">';
+    c.stats.forEach(function(s){statsHtml+='<div class="case-stat"><div class="num">'+s.n+'</div><div class="lbl">'+s.l+'</div></div>'});
+    statsHtml+='</div>';
+  }
+
+  var quoteHtml='';
+  if(c.quote){
+    quoteHtml='<div class="case-section"><div class="quote">"'+c.quote+'"'+(c.quoteAttr?'<span class="attr">– '+c.quoteAttr+'</span>':'')+'</div></div>';
+  }
+
+  var html='<div class="w" id="'+id+'" style="left:'+ox+'px;top:'+oy+'px;width:520px;height:440px;z-index:'+zIdx+'" onclick="focus(this)">'
+    +'<div class="tbar a" onmousedown="dStart(event,this.parentElement)">'
+    +'<svg class="ico" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#4169e1" stroke="#000" stroke-width=".4"/><ellipse cx="7" cy="7" rx="2.5" ry="5" fill="none" stroke="#fff" stroke-width=".4"/><line x1="2" y1="5" x2="12" y2="5" stroke="#fff" stroke-width=".3"/><line x1="2" y1="9" x2="12" y2="9" stroke="#fff" stroke-width=".3"/></svg>'
+    +'<span class="tt">'+c.name+' - Microsoft Internet Explorer</span>'
+    +'<div class="wbtn" onclick="minWin(event,\''+id+'\')">_</div>'
+    +'<div class="wbtn" onclick="maxWin(\''+id+'\')">□</div>'
+    +'<div class="wbtn" onclick="closeCaseWin(event,\''+id+'\')">×</div>'
+    +'</div>'
+    +'<div class="mbar"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span></div>'
+    +'<div class="abar"><span>Address</span><div class="url">https://grafikr.dk/cases/'+key+'</div></div>'
+    +'<div class="wbody" style="background:#fff"><div style="padding:16px">'
+    +'<div style="font-size:16px;font-weight:700;color:#00007b;margin-bottom:2px">'+c.name+'</div>'
+    +'<div style="font-size:12px;color:#666;margin-bottom:10px">'+c.headline+'</div>'
+    +'<div class="case-meta">'
+    +'<span class="cm-k">Kunde</span><span class="cm-v">'+c.name+'</span>'
+    +'<span class="cm-k">Platform</span><span class="cm-v">'+c.platform+'</span>'
+    +'<span class="cm-k">Samarbejde</span><span class="cm-v">Siden '+c.since+'</span>'
+    +'<span class="cm-k">Branche</span><span class="cm-v" style="text-transform:capitalize">'+c.cat+'</span>'
+    +'<span class="cm-k">Markeder</span><span class="cm-v">'+c.market+'</span>'
+    +'<span class="cm-k">Services</span><span class="cm-v">'+c.services+'</span>'
+    +'</div>'
+    +statsHtml
+    +'<div class="case-section"><h3>Udfordringen</h3><p>'+c.challenge+'</p></div>'
+    +'<div class="case-section"><h3>Løsningen</h3><p>'+c.solution+'</p></div>'
+    +'<div class="case-section"><h3>Resultatet</h3><p>'+c.result+'</p></div>'
+    +quoteHtml
+    +'<div class="case-section"><h3>Team</h3><p style="font-size:10px;color:#666">'+c.team+'</p></div>'
+    +'<div style="text-align:center;margin-top:8px"><a style="color:#00007b;font-size:11px;cursor:pointer" onclick="window.open(\'https://'+c.url+'\')">Besøg '+c.url+' ↗</a></div>'
+    +'</div></div>'
+    +'<div class="sbar"><span style="flex:1">Udført</span><span>'+c.url+'</span></div>'
+    +'</div>';
+
+  document.getElementById('caseWindows').insertAdjacentHTML('beforeend',html);
+  wins[id]={title:c.name,open:true};
+  focus(document.getElementById(id));
+  updateTaskbar();
+}
+
+function closeCaseWin(e,id){
+  e.stopPropagation();
+  document.getElementById(id).classList.add('hid');
+  wins[id].open=false;
+  updateTaskbar();
+}
+
+// === INIT ===
+renderCases('all');
+focus(document.getElementById('w2'));
+setTimeout(function(){focus(document.getElementById('w1'))},50);
+updateTaskbar();
+
+// Desktop icon selection
+document.querySelectorAll('.di').forEach(function(icon){
+  icon.addEventListener('click',function(e){document.querySelectorAll('.di').forEach(function(i){i.classList.remove('sel')});icon.classList.add('sel');e.stopPropagation()});
+});
+document.getElementById('desk').addEventListener('click',function(e){if(!e.target.closest('.di'))document.querySelectorAll('.di').forEach(function(i){i.classList.remove('sel')})});
+
+// Context menu
+var wpLoaded=false;
+document.getElementById('desk').addEventListener('contextmenu',function(e){
+  if(e.target.closest('.w')||e.target.closest('.tkbar')||e.target.closest('.smenu'))return;
+  e.preventDefault();var ctx=document.getElementById('ctx');var dr=document.getElementById('desk').getBoundingClientRect();
+  var x=e.clientX-dr.left,y=e.clientY-dr.top;
+  if(x+ctx.offsetWidth>dr.width)x=dr.width-170;
+  if(y+ctx.offsetHeight>dr.height-32)y=dr.height-32-ctx.offsetHeight;
+  ctx.style.left=x+'px';ctx.style.top=y+'px';ctx.classList.add('open');
+  document.getElementById('sm').classList.remove('open');document.getElementById('stb').classList.remove('pr');
+});
+document.addEventListener('click',function(e){if(!e.target.closest('.ctx'))document.getElementById('ctx').classList.remove('open')});
+function hideCtx(){document.getElementById('ctx').classList.remove('open')}
+function toggleWP(){
+  hideCtx();
+  var dk=document.getElementById('desk');
+  if(wpLoaded){dk.style.backgroundImage='';dk.style.backgroundSize='';dk.style.backgroundPosition='';dk.classList.remove('wp');wpLoaded=false;return}
+  var im=new Image();im.crossOrigin='anonymous';
+  im.onload=function(){
+    var cw=320,ch=Math.round(cw*(im.height/im.width));
+    var cv=document.createElement('canvas');cv.width=cw;cv.height=ch;
+    var ct=cv.getContext('2d');ct.drawImage(im,0,0,cw,ch);
+    try{
+      var idata=ct.getImageData(0,0,cw,ch),px=idata.data;
+      var bayer=[[0,8,2,10],[12,4,14,6],[3,11,1,9],[15,7,13,5]];
+      var n=4;
+      for(var y=0;y<ch;y++)for(var x=0;x<cw;x++){
+        var i=(y*cw+x)*4,th=(bayer[y%4][x%4]/16-.5)*(256/n);
+        for(var c=0;c<3;c++){var v=px[i+c]+th;v=Math.round(v*(n-1)/255)*(255/(n-1));px[i+c]=Math.max(0,Math.min(255,v))}
+      }
+      ct.putImageData(idata,0,0);
+      dk.style.backgroundImage='url('+cv.toDataURL()+')';
+    }catch(e){dk.style.backgroundImage='url('+im.src+')'}
+    dk.style.backgroundSize='cover';dk.style.backgroundPosition='center';dk.classList.add('wp');wpLoaded=true;
+  };
+  im.onerror=function(){
+    dk.style.backgroundImage='url(https://cdn.sanity.io/images/4kciagr0/production/a8942ff2575d00ddc5192f89340c1cf7b529221c-2500x1667.jpg?w=320&q=10&fit=clip&auto=format)';
+    dk.style.backgroundSize='cover';dk.style.backgroundPosition='center';dk.classList.add('wp');wpLoaded=true;
+  };
+  im.src='https://cdn.sanity.io/images/4kciagr0/production/a8942ff2575d00ddc5192f89340c1cf7b529221c-2500x1667.jpg?w=828&q=75&fit=clip&auto=format';
+}
+function refresh(){document.querySelectorAll('.di').forEach(function(i){i.style.opacity='0';setTimeout(function(){i.style.opacity='1'},150)});hideCtx()}
+function arrangeIcons(){document.querySelector('.dicons').style.gap='6px';hideCtx()}
+function lineUpIcons(){document.querySelector('.dicons').style.gap='8px';hideCtx()}
+
+// === MAXIMIZE ===
+var maxState={};
+function maxWin(id){
+  var el=document.getElementById(id);if(!el)return;
+  if(el.classList.contains('maxed')){
+    el.classList.remove('maxed');
+    var s=maxState[id];
+    if(s){el.style.left=s.l;el.style.top=s.t;el.style.width=s.w;el.style.height=s.h}
+  }else{
+    maxState[id]={l:el.style.left,t:el.style.top,w:el.style.width,h:el.style.height};
+    el.classList.add('maxed');
+  }
+  focus(el);
+  // Resize snake canvas if snake is maximized
+  if(id==='w9')resizeSnake();
+}
+
+// === SNAKE GAME ===
+var snk={running:false,paused:false,timer:null,dir:2,nextDir:2,snake:[],food:null,score:0,hi:0,gs:14,cols:20,rows:20};
+
+function initSnake(){
+  var c=document.getElementById('snkC');
+  if(!c)return;
+  resizeSnake();
+  snk.snake=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];
+  snk.dir=2;snk.nextDir=2;snk.score=0;snk.running=false;snk.paused=false;
+  clearInterval(snk.timer);
+  document.getElementById('snkScore').textContent='0';
+  document.getElementById('snkMsg').textContent='Tryk SPACE for at starte';
+  drawSnake();
+}
+
+function resizeSnake(){
+  var c=document.getElementById('snkC');if(!c)return;
+  var wrap=c.parentElement;
+  var sz=Math.min(wrap.clientWidth-20,wrap.clientHeight-60);
+  sz=Math.max(sz,140);
+  snk.gs=Math.floor(sz/snk.cols);
+  var px=snk.gs*snk.cols;
+  c.width=px;c.height=px;
+  drawSnake();
+}
+
+function spawnFood(){
+  var free=[];
+  for(var x=0;x<snk.cols;x++)for(var y=0;y<snk.rows;y++){
+    var occ=false;
+    for(var i=0;i<snk.snake.length;i++)if(snk.snake[i].x===x&&snk.snake[i].y===y){occ=true;break}
+    if(!occ)free.push({x:x,y:y});
+  }
+  snk.food=free[Math.floor(Math.random()*free.length)];
+}
+
+function drawSnake(){
+  var c=document.getElementById('snkC');if(!c)return;
+  var ctx=c.getContext('2d');var g=snk.gs;
+  ctx.fillStyle='#000';ctx.fillRect(0,0,c.width,c.height);
+  // Grid
+  ctx.strokeStyle='#111';ctx.lineWidth=0.5;
+  for(var x=0;x<=snk.cols;x++){ctx.beginPath();ctx.moveTo(x*g,0);ctx.lineTo(x*g,snk.rows*g);ctx.stroke()}
+  for(var y=0;y<=snk.rows;y++){ctx.beginPath();ctx.moveTo(0,y*g);ctx.lineTo(snk.cols*g,y*g);ctx.stroke()}
+  // Food
+  if(snk.food){ctx.fillStyle='#f00';ctx.fillRect(snk.food.x*g+1,snk.food.y*g+1,g-2,g-2)}
+  // Snake
+  snk.snake.forEach(function(s,i){
+    ctx.fillStyle=i===0?'#0f0':'#0a0';
+    ctx.fillRect(s.x*g+1,s.y*g+1,g-2,g-2);
+  });
+}
+
+function stepSnake(){
+  if(!snk.running||snk.paused)return;
+  snk.dir=snk.nextDir;
+  var head={x:snk.snake[0].x,y:snk.snake[0].y};
+  if(snk.dir===0)head.y--;
+  else if(snk.dir===1)head.y++;
+  else if(snk.dir===2)head.x++;
+  else head.x--;
+  // Wrap
+  if(head.x<0)head.x=snk.cols-1;
+  if(head.x>=snk.cols)head.x=0;
+  if(head.y<0)head.y=snk.rows-1;
+  if(head.y>=snk.rows)head.y=0;
+  // Self collision
+  for(var i=0;i<snk.snake.length;i++){
+    if(snk.snake[i].x===head.x&&snk.snake[i].y===head.y){
+      snk.running=false;clearInterval(snk.timer);
+      if(snk.score>snk.hi){snk.hi=snk.score;document.getElementById('snkHi').textContent=snk.hi}
+      document.getElementById('snkMsg').textContent='Game Over! Score: '+snk.score+' — SPACE for nyt spil';
+      return;
+    }
+  }
+  snk.snake.unshift(head);
+  if(snk.food&&head.x===snk.food.x&&head.y===snk.food.y){
+    snk.score++;document.getElementById('snkScore').textContent=snk.score;
+    spawnFood();
+  }else{
+    snk.snake.pop();
+  }
+  drawSnake();
+}
+
+function startSnake(){
+  snk.snake=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];
+  snk.dir=2;snk.nextDir=2;snk.score=0;snk.running=true;snk.paused=false;
+  document.getElementById('snkScore').textContent='0';
+  document.getElementById('snkMsg').textContent='';
+  spawnFood();drawSnake();
+  clearInterval(snk.timer);
+  snk.timer=setInterval(stepSnake,110);
+}
+
+function stopSnake(){snk.running=false;clearInterval(snk.timer)}
+
+document.addEventListener('keydown',function(e){
+  // Only handle if snake window is active
+  if(activeWin!=='w9')return;
+  if(e.code==='Space'){
+    e.preventDefault();
+    if(!snk.running)startSnake();
+    else{snk.paused=!snk.paused;document.getElementById('snkMsg').textContent=snk.paused?'PAUSE — SPACE for at fortsætte':''}
+    return;
+  }
+  if(!snk.running||snk.paused)return;
+  if(e.code==='ArrowUp'&&snk.dir!==1){snk.nextDir=0;e.preventDefault()}
+  else if(e.code==='ArrowDown'&&snk.dir!==0){snk.nextDir=1;e.preventDefault()}
+  else if(e.code==='ArrowRight'&&snk.dir!==3){snk.nextDir=2;e.preventDefault()}
+  else if(e.code==='ArrowLeft'&&snk.dir!==2){snk.nextDir=3;e.preventDefault()}
+});
+
+// Init snake canvas on first open
+var origOpenW9=false;
+var _origOpenWin=openWin;
+openWin=function(id){
+  _origOpenWin(id);
+  if(id==='w9'&&!origOpenW9){origOpenW9=true;setTimeout(initSnake,50)}
+};
+
+// === BOOT SEQUENCE ===
+(function(){
+  var bar=document.getElementById('bootBlocks');if(!bar)return;
+  var total=18;
+  for(var i=0;i<total;i++){var b=document.createElement('div');b.className='boot-b';bar.appendChild(b)}
+  var blocks=bar.querySelectorAll('.boot-b');
+  var idx=0;
+  var iv=setInterval(function(){
+    if(idx<total){blocks[idx].classList.add('on');idx++}
+    else{
+      clearInterval(iv);
+      setTimeout(function(){
+        var boot=document.getElementById('boot');
+        boot.classList.add('out');
+        setTimeout(function(){boot.remove()},600);
+      },400);
+    }
+  },150);
+})();
+</script>
+</body>
+</html>
